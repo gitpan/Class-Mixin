@@ -1,79 +1,42 @@
-NAME
-    Class::Mixin - API for aliasing methods to/from other classes
+Class-Mixin
 
-DEPENDENCIES
-    *   Symbol
+API for aliasing methods to/from other classes
 
 INSTALLATION
-    To install this module type the following:
 
-    * perl Makefile.PL
+To install this module, run the following commands:
 
-    * make
+	perl Makefile.PL
+	make
+	make test
+	make install
 
-    * make test
+SUPPORT AND DOCUMENTATION
 
-    * make install
+After installing, you can find documentation for this module with the
+perldoc command.
 
-OVERVIEW
-    Blah
+    perldoc Class::Mixin
 
-SYNOPSIS
-     package Company::Subsystem::Enrollment::User::Student;
-     use Company::User ();
+You can also look for information at:
 
-     use Class::Mixin to=> 'Foo::Bar';
+    RT, CPAN's request tracker
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Class-Mixin
 
-CONSTANTS
-METHODS
-  import
-    Method used when loading class to import symbols or perform some
-    function. In this case we take the calling classes methods and map them
-    into the class passed in as a parameter.
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/Class-Mixin
 
-    Input
+    CPAN Ratings
+        http://cpanratings.perl.org/d/Class-Mixin
 
-      None
+    Search CPAN
+        http://search.cpan.org/dist/Class-Mixin
 
-    Output
-
-      * Apache Request Object
-
-  Desctructor DESTROY
-    This modules uses a destructor for un-mixing methods. This is done in
-    the case that this module is unloaded for some reason. It will return
-    modules to their original states.
-
-    Input
-
-      * Class::Mixin object
-
-    Output
-
-      None
-
-  resync
-    Function used to process registered 'mixins'. Typically automatically
-    called once immediately after program compilation. Sometimes though you
-    may want to call it manually if a modules is reloaded.
-
-    Input
-
-      None
-
-    Output
-
-      None
-
-HISTORY
-    * 2003/06/12 Created
-
-AUTHOR
-    * Stathy G. Touloumis <stathy-classmixin@stathy.com>
 
 COPYRIGHT AND LICENCE
-    Copyright (C) 2003 Stathy G. Touloumis
 
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as Perl itself.
+Copyright (C) 2008 Stathy G. Touloumis
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
 

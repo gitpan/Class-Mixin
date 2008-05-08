@@ -1,1 +1,10 @@
-None
+Revision history for Class-Mixin
+
+0.02    2008-05-08
+        * David Westbrook added as co-maintainer.
+	* Updating repository with 7/15/2004 version.
+	* Distro restructured using Module::Starter.
+
+0.01    2003-11-13
+        * Initial release of 6/12/2003 version.
+

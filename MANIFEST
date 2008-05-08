@@ -1,6 +1,9 @@
 Changes
-Makefile.PL
 MANIFEST
+Makefile.PL
 README
-test.pl
-Mixin.pm
+lib/Class/Mixin.pm
+t/00-load.t
+t/pod-coverage.t
+t/pod.t
+META.yml                                 Module meta-data (added by MakeMaker)

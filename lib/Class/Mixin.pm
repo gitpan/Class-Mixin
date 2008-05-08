@@ -61,7 +61,7 @@ use strict;
 use Symbol ();
 use warnings::register;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my %r = map { $_=> 1 } qw(
 	BEGIN
@@ -70,6 +70,7 @@ my %r = map { $_=> 1 } qw(
 	END
 	DESTROY
 	AUTOLOAD
+	ISA
 	
 	import
 	can
@@ -125,7 +126,7 @@ Apache Request Object
 sub import {
 	my $cl = shift;
 	return unless @_;
-	my $obj = $Class::Mixin::OBJ;
+	my $obj = Class::Mixin->__new;
 
 	my $d = shift || 'error';
 	if ( $d !~ /^(?:from|to)$/oi ) {
@@ -236,6 +237,7 @@ may want to call it manually if a modules is reloaded.
 =cut
 sub resync {
 	my $obj = $Class::Mixin::OBJ;
+    my $class = caller;
 
 	foreach my $key ( keys %$obj ) {
 		my ($d, $class1, $class2) = split /\|/, $key;
@@ -243,6 +245,9 @@ sub resync {
 		my $mixin = ( $d eq 'from' ? $class1 : $class2 );
 		my $target = ( $d eq 'from' ? $class2 : $class1 );
 		my $mixinSym = $mixin . '::';
+		my $targetSym = $target . '::';
+
+		next if $class ne $mixin && !$class->isa( __PACKAGE__ );
 
 		{
 			no strict 'refs';
@@ -253,9 +258,9 @@ sub resync {
 Unable to Mixin method '$method', restricted
 W
 
-				} elsif ( $target->can( $method ) and !exists $obj->{$method} ) {
+				} elsif ( exists ${ $targetSym }{ $method } ) {
 		 			require Carp;
-					Carp::croak <<E;
+					warnings::warn <<E if warnings::enabled();
 Unable to Mixin method '$method'
 FROM $mixin
 TO $target
@@ -304,7 +309,7 @@ __END__
 
 =item *
 
-Stathy G. Touloumis <stathy-classmixin@stathy.com>
+Stathy G. Touloumis <stathy@stathy.com>
 
 =back
 
